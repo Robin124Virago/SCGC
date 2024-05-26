@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promexporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: promexporter
+  template:
+    metadata:
+      labels:
+        app: promexporter
+    spec:
+      containers:
+      - name: promexporter
+        image: nginx/nginx-prometheus-exporter
+        ports:
+        - containerPort: 9113
+        args:
+        - --nginx.scrape-uri=http://nginx:8080/metrics
