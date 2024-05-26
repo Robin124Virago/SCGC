@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  default.conf: |
+    server {
+      listen       80;
+      server_name  localhost;
+
+      location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+      }
+
+      location /hello {
+        proxy_pass http://nginx:8080;
+      }
+    }
+
+    server {
+      listen       8080;
+      server_name  localhost;
+
+      location /metrics {
+        stub_status;
+        access_log off;
+        allow 127.0.0.1;
+      }
+    }
+
