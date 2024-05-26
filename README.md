@@ -1,5 +1,3 @@
-markdown
-
 # Project Submission: Kubernetes Deployment Configuration
 
 ## Overview
