@@ -1,0 +1,183 @@
+robinel@DESKTOP-IC03SH5:~$ ssh robin.budulea@fep.grid.pub.ro -X -o ServerAliveInterval=100
+
+* IMPORTANT - PLEASE READ CAREFULLY:
+* Începând cu 28.09.2023 vom muta directoarele home vechi la calea $OLD_HOME. Vă rugăm să mutați
+ce mai este relevant în home-ul cel nou pana pe 05.10.2023
+* If you are using GPU computing and TensorFlow technology, please use CUDA_VISIBLE_DEVICES
+  to limit the number of GPUs. Otherwise, you will be banned.
+* Your sessions will be disconnected automatically after 60min on inactivity.
+  You can use "-o ServerAliveInterval 10" option if you need longer sessions.*
+(robin.budulea@fep.grid.pub.ro)
+
+Please login at https://login.upb.ro/auth/realms/UPB/device. Then input code XUZH-ANTE
+
+
+Press Enter to continue:
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+
+
+Welcome, robin.budulea!
+
+
+Last login: Wed May 22 09:00:26 2024 from 82.208.156.237
+[robin.budulea@fep8 ~]$ ssh -i ~/.ssh/id_openstack student@10.9.2.223
+The authenticity of host '10.9.2.223 (10.9.2.223)' can't be established.
+ECDSA key fingerprint is SHA256:yiSjGKnLw3rnEazQY6YOXs+EJMBJcej0xPfk/9TJOD8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.9.2.223' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Wed 22 May 2024 07:48:30 PM UTC
+
+  System load:  0.01               Processes:               129
+  Usage of /:   19.1% of 23.52GB   Users logged in:         0
+  Memory usage: 4%                 IPv4 address for eth0:   10.9.2.223
+  Swap usage:   0%                 IPv4 address for virbr0: 192.168.122.1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+student@hw-robin-budulea:~$ cd work
+student@hw-robin-budulea:~/work$ wget https://repository.grid.pub.ro/cs/scgc/laboratoare/homework-project.zip
+--2024-05-22 19:48:46--  https://repository.grid.pub.ro/cs/scgc/laboratoare/homework-project.zip
+Resolving repository.grid.pub.ro (repository.grid.pub.ro)... 141.85.241.222
+Connecting to repository.grid.pub.ro (repository.grid.pub.ro)|141.85.241.222|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 147141980 (140M) [application/zip]
+Saving to: ‘homework-project.zip’
+
+homework-project.zip      100%[=====================================>] 140.33M   240MB/s    in 0.6s
+
+2024-05-22 19:48:48 (240 MB/s) - ‘homework-project.zip’ saved [147141980/147141980]
+
+student@hw-robin-budulea:~/work$ sudo apt update
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:2 http://ncit.clouds.archive.ubuntu.com/ubuntu focal InRelease [265 kB]
+Get:3 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:4 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]
+Get:5 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/main amd64 Packages [970 kB]
+Get:6 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/main Translation-en [506 kB]
+Get:7 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/main amd64 c-n-f Metadata [29.5 kB]
+Get:8 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [22.0 kB]
+Get:9 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/restricted Translation-en [6,212 B]
+Get:10 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/restricted amd64 c-n-f Metadata [392 B]
+Get:11 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/universe amd64 Packages [8,628 kB]
+Get:12 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/universe Translation-en [5,124 kB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [2,954 kB]
+Get:14 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/universe amd64 c-n-f Metadata [265 kB]
+Get:15 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [144 kB]
+Get:16 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/multiverse Translation-en [104 kB]
+Get:17 http://ncit.clouds.archive.ubuntu.com/ubuntu focal/multiverse amd64 c-n-f Metadata [9,136 B]
+Get:18 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [3,331 kB]
+Get:19 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [525 kB]
+Get:20 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [17.2 kB]
+Get:21 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [2,953 kB]
+Get:22 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [413 kB]
+Get:23 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 c-n-f Metadata [552 B]
+Get:24 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1,188 kB]
+Get:25 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [285 kB]
+Get:26 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [444 kB]
+Get:27 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [13.2 kB]
+Get:28 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [2,837 kB]
+Get:29 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [397 kB]
+Get:30 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [552 B]
+Get:31 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [962 kB]
+Get:32 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [25.7 kB]
+Get:33 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [26.2 kB]
+Get:34 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [7,880 B]
+Get:35 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [620 B]
+Get:36 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [45.7 kB]
+Get:37 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/main Translation-en [16.3 kB]
+Get:38 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [1,420 B]
+Get:39 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:40 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [25.0 kB]
+Get:41 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [203 kB]
+Get:42 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [19.2 kB]
+Get:43 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [24.0 kB]
+Get:44 http://security.ubuntu.com/ubuntu focal-security/multiverse Translation-en [5,904 B]
+Get:45 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 c-n-f Metadata [548 B]
+Get:46 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [16.3 kB]
+Get:47 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [880 B]
+Get:48 http://ncit.clouds.archive.ubuntu.com/ubuntu focal-backports/multiverse amd64 c-n-f Metadata [116 B]
+Fetched 33.1 MB in 5s (6,193 kB/s)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+40 packages can be upgraded. Run 'apt list --upgradable' to see them.
+student@hw-robin-budulea:~/work$ unzip homework-project.zip
+Archive:  homework-project.zip
+   creating: lab-kubernetes/
+  inflating: lab-kubernetes/checksums
+  inflating: lab-kubernetes/lab-kubernetes.qcow2
+  inflating: lab-kubernetes/config
+  inflating: runvm.sh
+student@hw-robin-budulea:~/work$ bash runvm.sh
+Network labvms defined from /usr/share/libvirt/networks/labvms.xml
+
+Network labvms marked as autostarted
+
+Network labvms started
+
+net.ipv4.ip_forward = 1
+Updated network labvms live state
+Image resized.
+
+Starting install...
+Domain creation completed.
+student@hw-robin-budulea:~/work$ virsh net-dhcp-leases labvms
+ Expiry Time   MAC address   Protocol   IP address   Hostname   Client ID or DUID
+-----------------------------------------------------------------------------------
+
+student@hw-robin-budulea:~/work$ virsh net-dhcp-leases labvms
+ Expiry Time   MAC address   Protocol   IP address   Hostname   Client ID or DUID
+-----------------------------------------------------------------------------------
+
+student@hw-robin-budulea:~/work$ virsh net-dhcp-leases labvms
+ Expiry Time   MAC address   Protocol   IP address   Hostname   Client ID or DUID
+-----------------------------------------------------------------------------------
+
+student@hw-robin-budulea:~/work$ virsh net-dhcp-leases labvms
+ Expiry Time           MAC address         Protocol   IP address          Hostname         Client ID or DUID
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ 2024-05-22 20:50:09   52:54:00:00:05:01   ipv4       192.168.100.51/24   lab-kubernetes   ff:b5:5e:67:ff:00:02:00:00:ab:11:5b:11:44:e7:c7:a1:7d:fb
+
+student@hw-robin-budulea:~/work$ sudo growpart /dev/sda 2
+FAILED: /dev/sda: does not exist
+student@hw-robin-budulea:~/work$ sydo lsblk
+
+Command 'sydo' not found, did you mean:
+
+  command 'sudo' from deb sudo (1.8.31-1ubuntu1.5)
+  command 'sudo' from deb sudo-ldap (1.8.31-1ubuntu1.5)
+  command 'syco' from deb emboss (6.6.0+dfsg-7ubuntu2)
+
+Try: sudo apt install <deb name>
+
+student@hw-robin-budulea:~/work$ sudo lsblk
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+vda    252:0    0  24G  0 disk
+├─vda1 252:1    0   1M  0 part
+└─vda2 252:2    0  24G  0 part /
+student@hw-robin-budulea:~/work$ sudo df -h /dev/vda2
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda2        24G  5.1G   18G  23% /
+student@hw-robin-budulea:~/work$ sudo resize2fs /dev/vda2
+resize2fs 1.45.5 (07-Jan-2020)
+The filesystem is already 6290939 (4k) blocks long.  Nothing to do!
+
+student@hw-robin-budulea:~/work$ df -h | grep /dev/vda2
+/dev/vda2        24G  5.1G   18G  23% /
+student@hw-robin-budulea:~/work$

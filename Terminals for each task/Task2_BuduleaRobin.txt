@@ -1,0 +1,381 @@
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.133.1-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+This message is shown once a day. To disable it please create the
+/home/robinel/.hushlogin file.
+robinel@DESKTOP-IC03SH5:~$ ssh robin.budulea@fep.grid.pub.ro -X -o ServerAliveInterval=100
+
+* IMPORTANT - PLEASE READ CAREFULLY:
+* Începând cu 28.09.2023 vom muta directoarele home vechi la calea $OLD_HOME. Vă rugăm să mutați
+ce mai este relevant în home-ul cel nou pana pe 05.10.2023
+* If you are using GPU computing and TensorFlow technology, please use CUDA_VISIBLE_DEVICES
+  to limit the number of GPUs. Otherwise, you will be banned.
+* Your sessions will be disconnected automatically after 60min on inactivity.
+  You can use "-o ServerAliveInterval 10" option if you need longer sessions.*
+(robin.budulea@fep.grid.pub.ro)
+
+Please login at https://login.upb.ro/auth/realms/UPB/device. Then input code DXKK-BZJI
+
+
+Press Enter to continue:
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+
+
+Welcome, robin.budulea!
+
+
+Last login: Fri May 24 18:21:07 2024 from 86.124.29.210
+[robin.budulea@fep8 ~]$ ssh -X -i ~/.ssh/id_openstack student@10.9.2.223
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Sat 25 May 2024 09:00:07 AM UTC
+
+  System load:  0.22               Users logged in:             0
+  Usage of /:   36.6% of 23.52GB   IPv4 address for eth0:       10.9.2.223
+  Memory usage: 59%                IPv4 address for virbr-labs: 192.168.100.254
+  Swap usage:   0%                 IPv4 address for virbr0:     192.168.122.1
+  Processes:    127
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+38 updates can be applied immediately.
+33 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Fri May 24 15:22:10 2024 from 141.85.150.247
+student@hw-robin-budulea:~$ cd work
+student@hw-robin-budulea:~/work$ ls
+almalinux-8.qcow2  debian-12.qcow2  homework-project.zip  runvm.sh  ubuntu-20-04.qcow2
+student@hw-robin-budulea:~/work$ bash runvm.sh
+
+Network labvms marked as autostarted
+
+
+net.ipv4.ip_forward = 1
+student@hw-robin-budulea:~/work$ virsh net-dhcp-leases labvms
+ Expiry Time           MAC address         Protocol   IP address          Hostname         Client ID or DUID
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ 2024-05-25 09:37:29   52:54:00:00:05:01   ipv4       192.168.100.51/24   lab-kubernetes   ff:b5:5e:67:ff:00:02:00:00:ab:11:5b:11:44:e7:c7:a1:7d:fb
+
+student@hw-robin-budulea:~/work$ ssh student@192.168.100.51
+student@192.168.100.51's password:
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Sat 25 May 2024 09:02:55 AM UTC
+
+  System load:                      0.53
+  Usage of /:                       24.6% of 15.64GB
+  Memory usage:                     41%
+  Swap usage:                       0%
+  Processes:                        156
+  Users logged in:                  0
+  IPv4 address for br-7158bb58ab45: 172.18.0.1
+  IPv6 address for br-7158bb58ab45: fc00:f853:ccd:e793::1
+  IPv4 address for docker0:         172.17.0.1
+  IPv4 address for eth0:            192.168.100.51
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+30 updates can be applied immediately.
+26 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Fri May 24 15:47:31 2024 from 192.168.100.254
+student@lab-kubernetes:~$ ls
+nginx-config.yaml           nginx-prometheus-exporter-deployment.yaml  nginx-service.yaml
+nginx-deployment.yaml       nginx-prometheus-exporter-service.yaml     nginx-service.yaml.save
+nginx-deployment.yaml.save  nginx-prometheus-exporter.yaml             nginx-service.yaml.save.1
+nginx-html.yaml             nginx-prometheus_exporter.yaml.save        promoexporter.yaml
+student@lab-kubernetes:~$ rm nginx-prometheus_exporter.yaml.save
+student@lab-kubernetes:~$ rm nginx-service.yaml.save
+student@lab-kubernetes:~$ rm nginx-service.yaml.save.1
+student@lab-kubernetes:~$ rm nginx-deployment.yaml.save
+student@lab-kubernetes:~$ ls
+nginx-config.yaml      nginx-prometheus-exporter-deployment.yaml  nginx-service.yaml
+nginx-deployment.yaml  nginx-prometheus-exporter-service.yaml     promoexporter.yaml
+nginx-html.yaml        nginx-prometheus-exporter.yaml
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter.yaml
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter-deployment.yaml
+student@lab-kubernetes:~$ ls
+nginx-config.yaml      nginx-prometheus-exporter-deployment.yaml  nginx-service.yaml
+nginx-deployment.yaml  nginx-prometheus-exporter-service.yaml     promoexporter.yaml
+nginx-html.yaml        nginx-prometheus-exporter.yaml
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter-deployment.yaml
+student@lab-kubernetes:~$ cat nginx-prometheus-exporter-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-prometheus-exporter
+  labels:
+    app: nginx-prometheus-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-prometheus-exporter
+  template:
+    metadata:
+      labels:
+        app: nginx-prometheus-exporter
+    spec:
+      containers:
+      - name: nginx-prometheus-exporter
+        image: nginx/nginx-prometheus-exporter:latest
+        args:
+        - -nginx.scrape-uri=http://nginx:8080/metrics
+        ports:
+        - containerPort: 9113
+          name: metrics
+
+student@lab-kubernetes:~$ cat nginx-prometheus-exporter-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: promexporter
+spec:
+  selector:
+    app: nginx-prometheus-exporter
+  ports:
+  - name: http
+    port: 9113
+    targetPort: 9113
+  type: ClusterIP
+student@lab-kubernetes:~$ cat promoexporter.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: promexporter
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 9113
+      targetPort: 9113
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter.yaml
+student@lab-kubernetes:~$ kubectl nginx-prometheus-exporter.yaml
+error: unknown command "nginx-prometheus-exporter.yaml" for "kubectl"
+student@lab-kubernetes:~$ kubectl appry -f nginx-prometheus-exporter.yaml
+error: unknown command "appry" for "kubectl"
+
+Did you mean this?
+        apply
+student@lab-kubernetes:~$ kubectl apply -f nginx-prometheus-exporter.yaml
+error: error parsing nginx-prometheus-exporter.yaml: error converting YAML to JSON: yaml: line 18: mapping values are not allowed in this context
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter.yaml
+student@lab-kubernetes:~$ kubectl apply -f nginx-prometheus-exporter.yaml
+error: error parsing nginx-prometheus-exporter.yaml: error converting YAML to JSON: yaml: line 18: mapping values are not allowed in this context
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter.yaml
+student@lab-kubernetes:~$ kubectl apply -f nginx-prometheus-exporter.yaml
+deployment.apps/promexporter created
+student@lab-kubernetes:~$ nano nginx-prometheus-exporter-service.yaml
+student@lab-kubernetes:~$ kubectl apply -f nginx-prometheus-exporter-service.yaml
+service/promexporter configured
+student@lab-kubernetes:~$ kubectl get pods
+NAME                                       READY   STATUS    RESTARTS   AGE
+nginx-767dfc66d7-v4gf4                     2/2     Running   0          14h
+nginx-prometheus-exporter-d8d49b7c-s9fkm   1/1     Running   0          13h
+promexporter-5f65bb68b7-lv99l              1/1     Running   0          57s
+student@lab-kubernetes:~$ kubectl get services
+NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                       AGE
+kubernetes     ClusterIP   10.96.0.1       <none>        443/TCP                       18h
+nginx          NodePort    10.96.95.160    <none>        80:30080/TCP,8080:30088/TCP   18h
+promexporter   ClusterIP   10.96.222.198   <none>        9113/TCP                      17h
+student@lab-kubernetes:~$ kubectl get deployments
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+nginx                       1/1     1            1           18h
+nginx-prometheus-exporter   1/1     1            1           17h
+promexporter                1/1     1            1           69s
+student@lab-kubernetes:~$ nano OutsideTheCluster.yaml
+student@lab-kubernetes:~$ kubectl apply -f OutsideTheCluster.yaml
+pod/curlpod created
+student@lab-kubernetes:~$ kubectl exec -it curl curlpod -- sh
+Error from server (NotFound): pods "curl" not found
+student@lab-kubernetes:~$ kubectl exec -it curl curlpod -- sh curl http://promexporter:9113/metrics
+Error from server (NotFound): pods "curl" not found
+student@lab-kubernetes:~$ kubectl exec -it curlpod -- sh
+~ $ curl http://promexporter:9113/metrics
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 0
+go_gc_duration_seconds{quantile="0.25"} 0
+go_gc_duration_seconds{quantile="0.5"} 0
+go_gc_duration_seconds{quantile="0.75"} 0
+go_gc_duration_seconds{quantile="1"} 0
+go_gc_duration_seconds_sum 0
+go_gc_duration_seconds_count 0
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 12
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.21.5"} 1
+# HELP go_memstats_alloc_bytes Number of bytes allocated and still in use.
+# TYPE go_memstats_alloc_bytes gauge
+go_memstats_alloc_bytes 251088
+# HELP go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed.
+# TYPE go_memstats_alloc_bytes_total counter
+go_memstats_alloc_bytes_total 251088
+# HELP go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table.
+# TYPE go_memstats_buck_hash_sys_bytes gauge
+go_memstats_buck_hash_sys_bytes 4625
+# HELP go_memstats_frees_total Total number of frees.
+# TYPE go_memstats_frees_total counter
+go_memstats_frees_total 0
+# HELP go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata.
+# TYPE go_memstats_gc_sys_bytes gauge
+go_memstats_gc_sys_bytes 2.49612e+06
+# HELP go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use.
+# TYPE go_memstats_heap_alloc_bytes gauge
+go_memstats_heap_alloc_bytes 251088
+# HELP go_memstats_heap_idle_bytes Number of heap bytes waiting to be used.
+# TYPE go_memstats_heap_idle_bytes gauge
+go_memstats_heap_idle_bytes 2.113536e+06
+# HELP go_memstats_heap_inuse_bytes Number of heap bytes that are in use.
+# TYPE go_memstats_heap_inuse_bytes gauge
+go_memstats_heap_inuse_bytes 1.589248e+06
+# HELP go_memstats_heap_objects Number of allocated objects.
+# TYPE go_memstats_heap_objects gauge
+go_memstats_heap_objects 933
+# HELP go_memstats_heap_released_bytes Number of heap bytes released to OS.
+# TYPE go_memstats_heap_released_bytes gauge
+go_memstats_heap_released_bytes 2.113536e+06
+# HELP go_memstats_heap_sys_bytes Number of heap bytes obtained from system.
+# TYPE go_memstats_heap_sys_bytes gauge
+go_memstats_heap_sys_bytes 3.702784e+06
+# HELP go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection.
+# TYPE go_memstats_last_gc_time_seconds gauge
+go_memstats_last_gc_time_seconds 0
+# HELP go_memstats_lookups_total Total number of pointer lookups.
+# TYPE go_memstats_lookups_total counter
+go_memstats_lookups_total 0
+# HELP go_memstats_mallocs_total Total number of mallocs.
+# TYPE go_memstats_mallocs_total counter
+go_memstats_mallocs_total 933
+# HELP go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures.
+# TYPE go_memstats_mcache_inuse_bytes gauge
+go_memstats_mcache_inuse_bytes 2400
+# HELP go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system.
+# TYPE go_memstats_mcache_sys_bytes gauge
+go_memstats_mcache_sys_bytes 15600
+# HELP go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures.
+# TYPE go_memstats_mspan_inuse_bytes gauge
+go_memstats_mspan_inuse_bytes 35112
+# HELP go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system.
+# TYPE go_memstats_mspan_sys_bytes gauge
+go_memstats_mspan_sys_bytes 48888
+# HELP go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place.
+# TYPE go_memstats_next_gc_bytes gauge
+go_memstats_next_gc_bytes 4.194304e+06
+# HELP go_memstats_other_sys_bytes Number of bytes used for other system allocations.
+# TYPE go_memstats_other_sys_bytes gauge
+go_memstats_other_sys_bytes 685983
+# HELP go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator.
+# TYPE go_memstats_stack_inuse_bytes gauge
+go_memstats_stack_inuse_bytes 491520
+# HELP go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator.
+# TYPE go_memstats_stack_sys_bytes gauge
+go_memstats_stack_sys_bytes 491520
+# HELP go_memstats_sys_bytes Number of bytes obtained from system.
+# TYPE go_memstats_sys_bytes gauge
+go_memstats_sys_bytes 7.44552e+06
+# HELP go_threads Number of OS threads created.
+# TYPE go_threads gauge
+go_threads 7
+# HELP nginx_connections_accepted Accepted client connections
+# TYPE nginx_connections_accepted counter
+nginx_connections_accepted 8
+# HELP nginx_connections_active Active client connections
+# TYPE nginx_connections_active gauge
+nginx_connections_active 1
+# HELP nginx_connections_handled Handled client connections
+# TYPE nginx_connections_handled counter
+nginx_connections_handled 8
+# HELP nginx_connections_reading Connections where NGINX is reading the request header
+# TYPE nginx_connections_reading gauge
+nginx_connections_reading 0
+# HELP nginx_connections_waiting Idle client connections
+# TYPE nginx_connections_waiting gauge
+nginx_connections_waiting 0
+# HELP nginx_connections_writing Connections where NGINX is writing the response back to the client
+# TYPE nginx_connections_writing gauge
+nginx_connections_writing 1
+# HELP nginx_exporter_build_info A metric with a constant '1' value labeled by version, revision, branch, goversion from which nginx_exporter was built, and the goos and goarch for the build.
+# TYPE nginx_exporter_build_info gauge
+nginx_exporter_build_info{branch="HEAD",goarch="amd64",goos="linux",goversion="go1.21.5",revision="85fa58b9f8979eeed776a1df58495ef5baa4d9d7",tags="unknown",version="1.1.0"} 1
+# HELP nginx_http_requests_total Total http requests
+# TYPE nginx_http_requests_total counter
+nginx_http_requests_total 8
+# HELP nginx_up Status of the last metric scrape
+# TYPE nginx_up gauge
+nginx_up 1
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 0.02
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1.048576e+06
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 9
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 8.409088e+06
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.71663178731e+09
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 1.266610176e+09
+# HELP process_virtual_memory_max_bytes Maximum amount of virtual memory available in bytes.
+# TYPE process_virtual_memory_max_bytes gauge
+process_virtual_memory_max_bytes 1.8446744073709552e+19
+# HELP promhttp_metric_handler_requests_in_flight Current number of scrapes being served.
+# TYPE promhttp_metric_handler_requests_in_flight gauge
+promhttp_metric_handler_requests_in_flight 1
+# HELP promhttp_metric_handler_requests_total Total number of scrapes by HTTP status code.
+# TYPE promhttp_metric_handler_requests_total counter
+promhttp_metric_handler_requests_total{code="200"} 0
+promhttp_metric_handler_requests_total{code="500"} 0
+promhttp_metric_handler_requests_total{code="503"} 0
+~ $ exit

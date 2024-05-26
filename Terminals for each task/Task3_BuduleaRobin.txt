@@ -1,0 +1,110 @@
+robinel@DESKTOP-IC03SH5:~$ ssh -D 12345 -J robin.budulea@fep.grid.pub.ro -i ~/.ssh/id_openstack student@10.9.2.223
+
+* IMPORTANT - PLEASE READ CAREFULLY:
+* Începând cu 28.09.2023 vom muta directoarele home vechi la calea $OLD_HOME. Vă rugăm să mutați
+ce mai este relevant în home-ul cel nou pana pe 05.10.2023
+* If you are using GPU computing and TensorFlow technology, please use CUDA_VISIBLE_DEVICES
+  to limit the number of GPUs. Otherwise, you will be banned.
+* Your sessions will be disconnected automatically after 60min on inactivity.
+  You can use "-o ServerAliveInterval 10" option if you need longer sessions.*
+(robin.budulea@fep.grid.pub.ro)
+
+Please login at https://login.upb.ro/auth/realms/UPB/device. Then input code ZCVB-HSUR
+
+
+Press Enter to continue:
+bind [127.0.0.1]:12345: Address already in use
+channel_setup_fwd_listener_tcpip: cannot listen to port: 12345
+Could not request local forwarding.
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Sat 25 May 2024 01:08:09 PM UTC
+
+  System load:  0.25               Users logged in:             1
+  Usage of /:   39.6% of 23.52GB   IPv4 address for eth0:       10.9.2.223
+  Memory usage: 61%                IPv4 address for virbr-labs: 192.168.100.254
+  Swap usage:   0%                 IPv4 address for virbr0:     192.168.122.1
+  Processes:    125
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+38 updates can be applied immediately.
+33 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Sat May 25 12:38:19 2024 from 141.85.150.247
+student@hw-robin-budulea:~$ ssh -L 9090:localhost:9090 student@192.168.100.51
+student@192.168.100.51's password:
+bind [127.0.0.1]:9090: Address already in use
+channel_setup_fwd_listener_tcpip: cannot listen to port: 9090
+Could not request local forwarding.
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Sat 25 May 2024 01:08:44 PM UTC
+
+  System load:                      0.25
+  Usage of /:                       28.5% of 15.64GB
+  Memory usage:                     55%
+  Swap usage:                       0%
+  Processes:                        184
+  Users logged in:                  1
+  IPv4 address for br-7158bb58ab45: 172.18.0.1
+  IPv6 address for br-7158bb58ab45: fc00:f853:ccd:e793::1
+  IPv4 address for docker0:         172.17.0.1
+  IPv4 address for eth0:            192.168.100.51
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+30 updates can be applied immediately.
+26 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Sat May 25 12:39:30 2024 from 192.168.100.254
+student@lab-kubernetes:~$ kubectl edit configmap prometheus-server -n monitoring
+student@lab-kubernetes:~$ kubectl edit configmap prometheus-server -n monitoring
+configmap/prometheus-server edited
+student@lab-kubernetes:~$ kubectl get pods
+NAME                                       READY   STATUS    RESTARTS   AGE
+curlpod                                    1/1     Running   0          4h7m
+nginx-767dfc66d7-v4gf4                     2/2     Running   0          18h
+nginx-prometheus-exporter-d8d49b7c-s9fkm   1/1     Running   0          17h
+promexporter-5f65bb68b7-lv99l              1/1     Running   0          4h12m
+student@lab-kubernetes:~$ kubectl port-forward svc/prometheus-server :80 -n monitoring --address='0.0.0.
+0'
+Forwarding from 0.0.0.0:37535 -> 9090
+Handling connection for 37535
+Handling connection for 37535
+Handling connection for 37535
+Handling connection for 37535

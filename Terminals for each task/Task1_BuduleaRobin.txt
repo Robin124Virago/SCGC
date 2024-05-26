@@ -1,0 +1,283 @@
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.133.1-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+This message is shown once a day. To disable it please create the
+/home/robinel/.hushlogin file.
+robinel@DESKTOP-IC03SH5:~$ ssh robin.budulea@fep.grid.pub.ro -X -o ServerAliveInterval=100
+
+* IMPORTANT - PLEASE READ CAREFULLY:
+* Începând cu 28.09.2023 vom muta directoarele home vechi la calea $OLD_HOME. Vă rugăm să mutați
+ce mai este relevant în home-ul cel nou pana pe 05.10.2023
+* If you are using GPU computing and TensorFlow technology, please use CUDA_VISIBLE_DEVICES
+  to limit the number of GPUs. Otherwise, you will be banned.
+* Your sessions will be disconnected automatically after 60min on inactivity.
+  You can use "-o ServerAliveInterval 10" option if you need longer sessions.*
+(robin.budulea@fep.grid.pub.ro)
+
+Please login at https://login.upb.ro/auth/realms/UPB/device. Then input code KDZM-FEBQ
+
+
+Press Enter to continue:
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+
+
+Welcome, robin.budulea!
+
+
+Last login: Wed May 22 22:47:58 2024 from 86.124.29.210
+[robin.budulea@fep8 ~]$ cd work
+-bash: cd: work: No such file or directory
+[robin.budulea@fep8 ~]$ ssh -i ~/.ssh/id_openstack student@10.9.2.223
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Fri 24 May 2024 03:22:10 PM UTC
+
+  System load:  0.0                Users logged in:             0
+  Usage of /:   24.2% of 23.52GB   IPv4 address for eth0:       10.9.2.223
+  Memory usage: 37%                IPv4 address for virbr-labs: 192.168.100.254
+  Swap usage:   0%                 IPv4 address for virbr0:     192.168.122.1
+  Processes:    127
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+38 updates can be applied immediately.
+33 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Wed May 22 19:48:31 2024 from 141.85.241.63
+student@hw-robin-budulea:~/work$ virsh net-dhcp-leases labvms
+ Expiry Time           MAC address         Protocol   IP address          Hostname         Client ID or DUID
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ 2024-05-24 16:21:19   52:54:00:00:05:01   ipv4       192.168.100.51/24   lab-kubernetes   ff:b5:5e:67:ff:00:02:00:00:ab:11:5b:11:44:e7:c7:a1:7d:fb
+
+student@hw-robin-budulea:~/work$ ssh student@192.168.100.51
+The authenticity of host '192.168.100.51 (192.168.100.51)' can't be established.
+ECDSA key fingerprint is SHA256:sg451Iubl0EY2jnRt7qt1mpbx4Cc+Wa2NrOne/wZUts.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.100.51' (ECDSA) to the list of known hosts.
+student@192.168.100.51's password:
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-174-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Fri 24 May 2024 03:47:30 PM UTC
+
+  System load:  0.19              Processes:                115
+  Usage of /:   20.8% of 7.77GB   Users logged in:          0
+  Memory usage: 11%               IPv4 address for docker0: 172.17.0.1
+  Swap usage:   0%                IPv4 address for eth0:    192.168.100.51
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+30 updates can be applied immediately.
+26 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+student@lab-kubernetes:~$ cd work
+-bash: cd: work: No such file or directory
+student@lab-kubernetes:~$ sudo growpart /dev/sda 2
+CHANGED: partition=2 start=4096 old: size=16771072 end=16775168 new: size=33550303 end=33554399
+student@lab-kubernetes:~$ sudo resize2fs /dev/sda2
+resize2fs 1.45.5 (07-Jan-2020)
+Filesystem at /dev/sda2 is mounted on /; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 2
+The filesystem on /dev/sda2 is now 4193787 (4k) blocks long.
+
+student@lab-kubernetes:~$ df -h | grep /dev/sda2
+/dev/sda2        16G  1.7G   14G  11% /
+student@lab-kubernetes:~$ cd work
+-bash: cd: work: No such file or directory
+student@lab-kubernetes:~$ wget https://repository.grid.pub.ro/cs/scgc/laboratoare/lab-kubernetes.zip
+--2024-05-24 15:49:17--  https://repository.grid.pub.ro/cs/scgc/laboratoare/lab-kubernetes.zip
+Resolving repository.grid.pub.ro (repository.grid.pub.ro)... 141.85.241.222
+Connecting to repository.grid.pub.ro (repository.grid.pub.ro)|141.85.241.222|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 147141917 (140M) [application/zip]
+Saving to: ‘lab-kubernetes.zip’
+
+lab-kubernetes.zip        100%[=====================================>] 140.33M   189MB/s    in 0.7s
+
+2024-05-24 15:49:17 (189 MB/s) - ‘lab-kubernetes.zip’ saved [147141917/147141917]
+
+student@lab-kubernetes:~$ ls
+lab-kubernetes.zip
+student@lab-kubernetes:~$ rm -rf lab-kubernetes.zip
+student@lab-kubernetes:~$ ls
+student@lab-kubernetes:~$ kind create cluster
+Creating cluster "kind" ...
+ ✓ Ensuring node image (kindest/node:v1.29.2) 🖼
+ ✓ Preparing nodes 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+Set kubectl context to "kind-kind"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind
+
+Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+student@lab-kubernetes:~$ kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:44983
+CoreDNS is running at https://127.0.0.1:44983/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+student@lab-kubernetes:~$ kubectl get nodes
+NAME                 STATUS   ROLES           AGE   VERSION
+kind-control-plane   Ready    control-plane   49s   v1.29.2
+student@lab-kubernetes:~$ kubectl run hello-app --image=gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0
+pod/hello-app created
+student@lab-kubernetes:~$ pod/hello-app created
+-bash: pod/hello-app: No such file or directory
+student@lab-kubernetes:~$ kubectl run hello-app --image=gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0
+Error from server (AlreadyExists): pods "hello-app" already exists
+student@lab-kubernetes:~$ kubectl get pods
+NAME        READY   STATUS    RESTARTS   AGE
+hello-app   1/1     Running   0          29s
+student@lab-kubernetes:~$ kubectl describe pods hello-app
+Name:             hello-app
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             kind-control-plane/172.18.0.2
+Start Time:       Fri, 24 May 2024 15:51:54 +0000
+Labels:           run=hello-app
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.5
+IPs:
+  IP:  10.244.0.5
+Containers:
+  hello-app:
+    Container ID:   containerd://9dbd88d203234b94689807b44a30904b6db3f5810415f257882482163e491c75
+    Image:          gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0
+    Image ID:       gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app@sha256:c62ead5b8c15c231f9e786250b07909daf6c266d0fcddd93fea882eb722c3be4
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 24 May 2024 15:51:56 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-pjdgt (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-pjdgt:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  37s   default-scheduler  Successfully assigned default/hello-app to kind-control-plane
+  Normal  Pulling    37s   kubelet            Pulling image "gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0"
+  Normal  Pulled     36s   kubelet            Successfully pulled image "gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0" in 1.319s (1.319s including waiting)
+  Normal  Created    35s   kubelet            Created container hello-app
+  Normal  Started    35s   kubelet            Started container hello-app
+student@lab-kubernetes:~$ kubectl create deployment hello-app --image=gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0
+loyment.apps/hello-app createddeployment.apps/hello-app created
+student@lab-kubernetes:~$ deployment.apps/hello-app created
+-bash: deployment.apps/hello-app: No such file or directory
+student@lab-kubernetes:~$ kubectl get deployments
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+hello-app   1/1     1            1           16s
+student@lab-kubernetes:~$ kubectl describe deployments hello-app
+Name:                   hello-app
+Namespace:              default
+CreationTimestamp:      Fri, 24 May 2024 15:52:54 +0000
+Labels:                 app=hello-app
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=hello-app
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=hello-app
+  Containers:
+   hello-app:
+    Image:        gitlab.cs.pub.ro:5050/scgc/cloud-courses/hello-app:1.0
+    Port:         <none>
+    Host Port:    <none>
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   hello-app-85f5fdb7b (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  22s   deployment-controller  Scaled up replica set hello-app-85f5fdb7b to 1
+student@lab-kubernetes:~$ nano hello-app-deployment.yaml
+student@lab-kubernetes:~$ kubectl apply -f nginx_deployment.yaml
+deployment.apps/nginx created
+student@lab-kubernetes:~$ nano nginx_service.yaml
+student@lab-kubernetes:~$ kubectl apply -f nginx_service.yaml
+service/nginx created
+student@lab-kubernetes:~$ nano nginx_config.yaml
+student@lab-kubernetes:~$ kubectl apply -f nginx_config.yaml
+configmap/nginx-conf created
+
+student@lab-kubernetes:~$ kubectl get deployments
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           9m23s
+student@lab-kubernetes:~$ curl http://172.18.0.2:30080
+<html><body>Hello from Robin Budulea</body></html>
+student@lab-kubernetes:~$ curl http://172.18.0.2:30088/metrics
+Active connections: 1
+server accepts handled requests
+ 2 2 2
+Reading: 0 Writing: 1 Waiting: 0
+student@lab-kubernetes:~$ nano nginx_deployment.yaml
+student@lab-kubernetes:~$ nano nginx_config.yaml
+student@lab-kubernetes:~$

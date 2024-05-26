@@ -1,0 +1,98 @@
+student@lab-kubernetes:~$ helm install grafana bitnami/grafana --namespace monitoring
+NAME: grafana
+LAST DEPLOYED: Sat May 25 17:16:02 2024
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: grafana
+CHART VERSION: 11.2.1
+APP VERSION: 11.0.0
+
+** Please be patient while the chart is being deployed **
+
+1. Get the application URL by running these commands:
+    echo "Browse to http://127.0.0.1:8080"
+    kubectl port-forward svc/grafana 8080:3000 &
+
+2. Get the admin credentials:
+
+    echo "User: admin"
+    echo "Password: $(kubectl get secret grafana-admin --namespace monitoring -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
+# Note: Do not include grafana.validateValues.database here. See https://github.com/bitnami/charts/issues/20629
+
+
+WARNING: There are "resources" sections in the chart not set. Using "resourcesPreset" is not recommended for production. For production installations, please set the following values according to your workload needs:
+  - grafana.resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+student@lab-kubernetes:~$ echo "Browse to http://127.0.0.1:8080"
+Browse to http://127.0.0.1:8080
+student@lab-kubernetes:~$ kubectl port-forward svc/grafana 8080:3000 &
+[2] 40193
+student@lab-kubernetes:~$ Error from server (NotFound): services "grafana" not found
+^C
+[2]-  Exit 1                  kubectl port-forward svc/grafana 8080:3000
+student@lab-kubernetes:~$ kubectl port-forward -n monitoring svc/grafana 3000:3000
+Unable to listen on port 3000: Listeners failed to create with the following errors: [unable to create listener: Error listen tcp4 127.0.0.1:3000: bind: address already in use unable to create listener: Error listen tcp6 [::1]:3000: bind: address already in use]
+error: unable to listen on any of the requested ports: [{3000 3000}]
+student@lab-kubernetes:~$ kubectl get all -n monitoring
+NAME                                                    READY   STATUS    RESTARTS   AGE
+pod/grafana-7c4765f75c-cklfg                            1/1     Running   0          4m8s
+pod/prometheus-alertmanager-0                           1/1     Running   0          6h54m
+pod/prometheus-kube-state-metrics-f7c68b84f-czsxt       1/1     Running   0          6h54m
+pod/prometheus-prometheus-node-exporter-6khkb           1/1     Running   0          6h54m
+pod/prometheus-prometheus-pushgateway-568fbf799-j8z4k   1/1     Running   0          6h54m
+pod/prometheus-server-6949d6cfdd-hl5jb                  2/2     Running   0          6h54m
+
+NAME                                          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/grafana                               ClusterIP   10.96.150.88   <none>        3000/TCP   4m8s
+service/prometheus-alertmanager               ClusterIP   10.96.99.236   <none>        9093/TCP   6h54m
+service/prometheus-alertmanager-headless      ClusterIP   None           <none>        9093/TCP   6h54m
+service/prometheus-kube-state-metrics         ClusterIP   10.96.83.212   <none>        8080/TCP   6h54m
+service/prometheus-prometheus-node-exporter   ClusterIP   10.96.153.97   <none>        9100/TCP   6h54m
+service/prometheus-prometheus-pushgateway     ClusterIP   10.96.72.166   <none>        9091/TCP   6h54m
+service/prometheus-server                     ClusterIP   10.96.81.79    <none>        80/TCP     6h54m
+
+NAME                                                 DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+daemonset.apps/prometheus-prometheus-node-exporter   1         1         1       1            1           kubernetes.io/os=linux   6h54m
+
+NAME                                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/grafana                             1/1     1            1           4m8s
+deployment.apps/prometheus-kube-state-metrics       1/1     1            1           6h54m
+deployment.apps/prometheus-prometheus-pushgateway   1/1     1            1           6h54m
+deployment.apps/prometheus-server                   1/1     1            1           6h54m
+
+NAME                                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/grafana-7c4765f75c                            1         1         1       4m8s
+replicaset.apps/prometheus-kube-state-metrics-f7c68b84f       1         1         1       6h54m
+replicaset.apps/prometheus-prometheus-pushgateway-568fbf799   1         1         1       6h54m
+replicaset.apps/prometheus-server-6949d6cfdd                  1         1         1       6h54m
+
+NAME                                       READY   AGE
+student@lab-kubernetes:~$ kubectl port-forward svc/grafana :3000 -n monitoring --address='0.0.0.0'
+Forwarding from 0.0.0.0:34161 -> 3000
+Handling connection for 34161
+Handling connection for 34161
+Handling connection for 34161
+Handling connection for 34161
+Handling connection for 34161
+Handling connection for 34161
+echo "Password: $(kubectl get secret grafana-admin --namespace monitoring -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
+^Cstudent@lab-kubernetes:~$ echo "Password: $(kubectl get secret grafana-admin --namespace monitoring -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
+Password: DUq1aFagor
+student@lab-kubernetes:~$ kubectl port-forward svc/grafana :3000 -n monitoring --address='0.0.0.0' &
+[6] 40552
+student@lab-kubernetes:~$ Forwarding from 0.0.0.0:44711 -> 3000
+student@lab-kubernetes:~$ curl http://172.18.0.2:30088/metrics
+Active connections: 2
+server accepts handled requests
+ 13 13 237
+Reading: 0 Writing: 1 Waiting: 1
+student@lab-kubernetes:~$ Handling connection for 44711
+Handling connection for 44711
+Handling connection for 44711
+Handling connection for 44711
+Handling connection for 44711
+Handling connection for 44711
+Handling connection for 44711
